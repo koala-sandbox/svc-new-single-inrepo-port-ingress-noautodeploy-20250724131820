@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+configMapGenerator:
+- behavior: merge
+  envs:
+  - environment-values.env
+  name: svc-new-single-inrepo-port-ingress-noautodeploy-20250724131820-environment-values
+- behavior: merge
+  envs:
+  - .env
+  name: svc-new-single-inrepo-port-ingress-noautodeploy-20250724131820-container-vars
+kind: Kustomization
+labels:
+- pairs:
+    app.kubernetes.io/version: ""
+namespace: dev
+resources:
+- ../../base
+images:
+- name: ghcr.io/koalaops/fake-registry/svc-new-single-inrepo-port-ingress-noautodeploy-20250724131820
